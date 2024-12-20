@@ -1,0 +1,63 @@
+name: Autograding Tests
+'on':
+- push
+- repository_dispatch
+permissions:
+  checks: write
+  actions: read
+  contents: read
+jobs:
+  run-autograding-tests:
+    runs-on: ubuntu-latest
+    if: github.actor != 'github-classroom[bot]'
+    env:
+      CI: true
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    # Tests
+    - name: Install dependencies
+      id: install-dependencies
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: Install dependencies
+        setup-command: ''
+        command: "npm install && npx playwright install chromium --with-deps"
+        timeout: 4
+        max-score: 30
+    - name: Run example test
+      id: run-example-test
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: Run example test
+        setup-command: ''
+        command: "npx playwright test --reporter='list,html' --project=chromium --trace=on"
+        timeout: 2
+        max-score: 30
+    - name: results.txt
+      id: results-txt
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: results.txt
+        setup-command: ''
+        command: cat results.txt
+        input: ''
+        expected-output: passed
+        comparison-method: contains
+        timeout: 1
+        max-score: 40
+    - name: Autograding Reporter
+      uses: classroom-resources/autograding-grading-reporter@v1
+      env:
+        INSTALL-DEPENDENCIES_RESULTS: "${{steps.install-dependencies.outputs.result}}"
+        RUN-EXAMPLE-TEST_RESULTS: "${{steps.run-example-test.outputs.result}}"
+        RESULTS-TXT_RESULTS: "${{steps.results-txt.outputs.result}}"
+      with:
+        runners: install-dependencies,run-example-test,results-txt
+    - uses: actions/upload-artifact@v4
+      if: ${{ !cancelled() }}
+      with:
+        name: playwright-report
+        path: playwright-report/
+        retention-days: 30
