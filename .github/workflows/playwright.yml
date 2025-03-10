@@ -18,7 +18,7 @@ jobs:
     - name: Install Chromium
       run: npx playwright install chromium --with-deps
     - name: Run Playwright tests
-      run: npx playwright test --project=chromium --trace=on
+      run: npx playwright test --reporter=list --project=chromium --trace=on
     - uses: actions/upload-artifact@v4
       if: ${{ !cancelled() }}
       with:
