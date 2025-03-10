@@ -1,4 +1,4 @@
-# Playwright-testien kehittämiseen ja suorittamiseen tarvittavien työkalujen asennusohjeet
+# Playwright-testauksen aloitus
 
 Tämä dokumentti tarjoaa ohjeet Playwright-testien kehittämiseen ja suorittamiseen tarvittavien työkalujen asennukseen. Playwright on tehokas testauskirjasto, joka mahdollistaa monipuolisten ja luotettavien selainpohjaisten testien kirjoittamisen. Se tukee useita selaimia ja tarjoaa laajan valikoiman ominaisuuksia, jotka helpottavat testien kehittämistä ja suorittamista. Seuraavissa osioissa käydään läpi tarvittavien työkalujen asennusvaiheet, jotta voit aloittaa Playwright-testien kirjoittamisen ja ajamisen omassa kehitysympäristössäsi.
 
@@ -48,7 +48,23 @@ npx playwright install chromium
 
 Lisätietoja selainten asennuksesta ja konfiguroinnista löydät Playwrightin dokumentaatiosta [https://playwright.dev/docs/browsers](https://playwright.dev/docs/browsers).
 
-Näiden työkalujen asennuksen jälkeen olet valmis kehittämään ja suorittamaan Playwright-testejä.
+Näiden työkalujen asennuksen jälkeen olet valmis kehittämään ja suorittamaan Playwright-testejä:
+
+```bash
+npx playwright test
+```
+
+Playwright suorittaa testit oletuksena "headless"-tilassa, eli ilman graafista käyttöliittymää. Jos haluat nähdä selaimen ruudullasi testien suorituksen ajan, käytä komentoa:
+
+```bash
+npx playwright test --headed
+```
+
+Mikäli haluat valita itse suoritettavat testit yksitellen ja tutkia niiden tuloksia graafisesti, voit käynnistää Playwright-työkalun komennolla:
+
+```bash
+npx playwright test --ui
+```
 
 
 ## Materiaalista
