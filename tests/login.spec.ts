@@ -32,9 +32,17 @@ test('Username and password are required', async ({ page }) => {
   await expect(page.getByText('password must be at least 6 characters long')).toBeVisible();
 });
 
+test('Login with non-existing user shows an error', async ({ page }) => {
+  await page.getByRole('textbox', { name: 'email' }).fill('waldo@example.com');
+  await page.getByRole('textbox', { name: 'password' }).fill(`AnyPasswordHere`);
+  await page.getByRole('button', { name: 'sign in' }).first().click();
+
+  await expect(page.getByText('Invalid email or password')).toBeVisible();
+});
+
 test('Login with incorrect password shows an error', async ({ page }) => {
   await page.getByRole('textbox', { name: 'email' }).fill('alice@example.com');
-  await page.getByRole('textbox', { name: 'password' }).fill(`}3jc\\xJnQ=E=+Q_y/%Hd311bW#6{_Oyj`);
+  await page.getByRole('textbox', { name: 'password' }).fill(`ThisIsNotMyRealPassword`);
   await page.getByRole('button', { name: 'sign in' }).first().click();
 
   await expect(page.getByText('Invalid email or password')).toBeVisible();
