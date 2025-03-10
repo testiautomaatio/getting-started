@@ -1,6 +1,10 @@
 import { test, expect } from '@playwright/test';
 
 
+test.beforeEach(async ({ page }) => {
+    await page.goto('https://authentication-6o1.pages.dev/signUp');
+});
+
 test('Sign up link works as expected', async ({ page }) => {
     await page.goto('https://authentication-6o1.pages.dev/');
     await page.getByRole('link', { name: 'Sign up' }).click();
@@ -9,7 +13,6 @@ test('Sign up link works as expected', async ({ page }) => {
 });
 
 test('Name, email and password are required', async ({ page }) => {
-    await page.goto('https://authentication-6o1.pages.dev/signUp');
     await page.getByRole('button', { name: 'Sign up' }).first().click();
 
     await expect(page.getByText('name is required')).toBeVisible();
@@ -18,8 +21,6 @@ test('Name, email and password are required', async ({ page }) => {
 });
 
 test('Sign up with existing email shows an error', async ({ page }) => {
-    await page.goto('https://authentication-6o1.pages.dev/signUp');
-
     await page.getByRole('textbox', { name: 'name' }).fill('Alice');
     await page.getByRole('textbox', { name: 'email' }).fill('alice@example.com');
     await page.getByRole('textbox', { name: 'password' }).fill(`AliceAlreadyExists123`);
@@ -30,8 +31,6 @@ test('Sign up with existing email shows an error', async ({ page }) => {
 });
 
 test('Sign up with valid data works as expected', async ({ page }) => {
-    await page.goto('https://authentication-6o1.pages.dev/signUp');
-
     await page.getByRole('textbox', { name: 'name' }).fill('Charlie');
     await page.getByRole('textbox', { name: 'email' }).fill('charlie@example.com');
     await page.getByRole('textbox', { name: 'password' }).fill(`CharlieHasAPassword123`);
@@ -42,8 +41,6 @@ test('Sign up with valid data works as expected', async ({ page }) => {
 });
 
 test('A newly created account can be used for signing in', async ({ page }) => {
-    await page.goto('https://authentication-6o1.pages.dev/signUp');
-
     await page.getByRole('textbox', { name: 'name' }).fill('Charlie');
     await page.getByRole('textbox', { name: 'email' }).fill('charlie@example.com');
     await page.getByRole('textbox', { name: 'password' }).fill(`CharlieHasAPassword123`);
