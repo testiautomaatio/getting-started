@@ -16,6 +16,9 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
 
+    - name: Disable man-db auto-update (prevents apt-get hangs)
+      run: sudo rm -f /var/lib/man-db/auto-update
+
     # Tests
     - name: Install dependencies
       id: install-dependencies
@@ -41,7 +44,7 @@ jobs:
       with:
         test-name: results.txt
         setup-command: ''
-        command: cat results.txt | tr -cd '[:alnum:] \n\.'
+        command: cat results.txt | tr -cd '[:print:]\n'
         input: ''
         expected-output: passed
         comparison-method: contains
