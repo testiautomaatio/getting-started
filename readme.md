@@ -1,3 +1,5 @@
+[English version of this readme is available in the file readme.en.md](./readme.en.md)
+
 # Playwright-testauksen aloitus 🎭
 
 Tässä tehtävässä tavoitteena on asentaa Playwright-testauskirjasto ja tutustua testien suorittamiseen ja kehittämiseen Playwrightin avulla. Playwright on tehokas testauskirjasto, joka mahdollistaa monipuolisten ja luotettavien selainpohjaisten testien kirjoittamisen. Se tukee useita selaimia ja tarjoaa laajan valikoiman ominaisuuksia, jotka helpottavat testien kehittämistä ja suorittamista.
