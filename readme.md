@@ -19,7 +19,7 @@ Tämän tehtävän suorittamiseksi tarvitset [Node.js-ympäristön](https://node
 Voit varmistaa Node.js:n asennuksen ja sen toimivuuden komentorivillä seuraavalla komennolla:
 
 ```bash
-node --version  # kirjoitushetkellä Node.js:n uusin LTS-versio on 22
+node --version  # kirjoitushetkellä Node.js:n uusin LTS-versio on 24
 ```
 
 Playwright-testejä voidaan kirjoittaa useilla eri koodieditoreilla ja eri ohjelmointikielillä, kuten JavaScriptillä ja TypeScriptillä. Tällä kurssilla suosittelemme TypeScriptin käyttöä, koska se yhdessä VS Coden kanssa helpottaa testien kirjoittamista ja virheiden paikantamista. Myös Playwrightin dokumentaation esimerkit on kirjoitettu TypeScriptillä.

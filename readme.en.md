@@ -17,7 +17,7 @@ You need [Node.js](https://nodejs.org/) and the [Visual Studio Code editor](http
 Verify the Node.js installation on the command line:
 
 ```bash
-node --version  # at writing time, the newest LTS is 22
+node --version  # at writing time, the newest LTS is 24
 ```
 
 You can write Playwright tests in different editors and languages (JavaScript or TypeScript). For this course we recommend TypeScript with VS Code because it makes writing tests and locating errors easier. Playwright's docs also use TypeScript in their examples.

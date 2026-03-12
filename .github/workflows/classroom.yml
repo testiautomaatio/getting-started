@@ -29,6 +29,7 @@ jobs:
         command: "npm install && npx playwright install chromium --with-deps"
         timeout: 4
         max-score: 30
+
     - name: Run example test
       id: run-example-test
       uses: classroom-resources/autograding-command-grader@v1
@@ -38,6 +39,7 @@ jobs:
         command: "npx playwright test --reporter='list,html' --project=chromium --trace=on"
         timeout: 2
         max-score: 30
+
     - name: results.txt
       id: results-txt
       uses: classroom-resources/autograding-io-grader@v1
@@ -50,6 +52,7 @@ jobs:
         comparison-method: contains
         timeout: 1
         max-score: 40
+
     - name: Autograding Reporter
       uses: classroom-resources/autograding-grading-reporter@v1
       env:
