@@ -14,7 +14,9 @@ We also highly recommend watching [Introduction to Playwright for End-to-End Tes
 
 You need [Node.js](https://nodejs.org/) and the [Visual Studio Code editor](https://code.visualstudio.com/). Node.js is the JavaScript runtime that Playwright is built on, so installing it is required to develop and run Playwright tests. [Download the latest LTS release from nodejs.org](https://nodejs.org/) (LTS = Long Term Support).
 
-Verify the Node.js installation on the command line:
+If you want to use a pre-configured development environment, you can utilize this repository's [development container configuration](./devcontainer.md), which provides a ready-to-use environment isolated from your host operating system. A development container can be an effective option if you want to avoid installation issues and quickly set up a testing environment that is isolated from your local machine. Read more about it in the [dedicated document](./devcontainer.md).
+
+You can verify your Node.js installation on the command line:
 
 ```bash
 node --version  # at writing time, the newest LTS is 24
@@ -69,22 +71,24 @@ If you see a version number, the installation was successful. You cannot run tes
 
 Playwright supports many browsers, including Chromium, Firefox, and WebKit. Browser support is documented at https://playwright.dev/docs/browsers. Playwright uses its own bundled browser binaries (not the ones already on your OS) to keep tests isolated and repeatable across platforms. You can also run the same tests across multiple browsers to verify cross-browser behavior.
 
-If you did not install browsers during the previous step, install them now:
+If you did not install browsers during the previous step, you can install them now. Use one of the following commands or modify them as needed:
 
 ```bash
-npx playwright install              # installs several browsers
-```
+# installs all browsers (Chromium, Firefox ja WebKit)
+npx playwright install
 
-You can install a specific browser only. For example, to install just Chromium:
+# installs only Chromium:
+npx playwright install chromium
 
-```bash
-npx playwright install chromium     # installs only Chromium
+# installs Chromium with system dependencies:
+# https://playwright.dev/docs/browsers#install-system-dependencies
+npx playwright install chromium --with-deps
 ```
 
 Find more on browser installation and configuration in the docs: [https://playwright.dev/docs/browsers](https://playwright.dev/docs/browsers). Playwright stores the browsers in a separate directory, and you can [remove them if needed](https://playwright.dev/docs/browsers#uninstall-browsers).
 
 > [!NOTE]
-> Course solutions are automatically checked with the Chromium project, but we recommend trying other browsers in your own tests as well.
+> Course solutions are automatically checked with the Chromium browser, but we recommend trying other browsers in your own tests as well.
 
 
 ## Part 2: Run the tests
@@ -94,7 +98,11 @@ Use the docs page [Running and debugging tests (playwright.dev)](https://playwri
 Run the tests from the repository root:
 
 ```bash
+# test using all browsers:
 npx playwright test
+
+# or just a specific browser:
+npx playwright test --project=chromium
 ```
 
 By default, tests run "headless" (without a visible browser window). Tests typically complete so quickly that watching the browser adds little value.

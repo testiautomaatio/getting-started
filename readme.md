@@ -16,6 +16,8 @@ Dokumentaation lisäksi suosittelemme vahvasti katsomaan videon [Introduction to
 
 Tämän tehtävän suorittamiseksi tarvitset [Node.js-ympäristön](https://nodejs.org/) ja [Visual Studio Code -koodieditorin](https://code.visualstudio.com/). Node.js on JavaScript-ajoympäristö, joka mahdollistaa JavaScriptin suorittamisen "palvelinpuolella", eli tässä tapauksessa omalla koneellasi. Playwright on rakennettu Node.js:n päälle, joten sen asentaminen on välttämätöntä Playwright-testien kehittämiseksi ja suorittamiseksi. [Voit ladata ja asentaa Node.js:n omalle koneellesi nodejs.org-sivustolta](https://nodejs.org/). Suosittelemme aina viimeisintä LTS-versiota (LTS = Long Term Support).
 
+Mikäli haluat käyttää valmiiksi konfiguroitua kehitysympäristöä, voit hyödyntää tämän repositorion [development container -konfiguraatiota](./devcontainer.md), joka tarjoaa valmiin ympäristön eristettynä omasta käyttöjärjestelmästäsi. Kehityskontti voi olla kannattava vaihtoehto, jos haluat välttää asennusongelmat ja saada nopeasti käyttöön testausympäristön, joka on eristetty omasta koneestasi. Lue lisää [tästä dokumentista](./devcontainer.md).
+
 Voit varmistaa Node.js:n asennuksen ja sen toimivuuden komentorivillä seuraavalla komennolla:
 
 ```bash
@@ -69,16 +71,18 @@ npx playwright --version
 
 Playwright tukee useita selaimia, kuten Chromium, Firefox ja WebKit. Selaimet ja niiden käyttäminen on dokumentoitu tarkemmin Playwrightin dokumentaatioon https://playwright.dev/docs/browsers. Playwright ei oletuksena käytä käyttöjärjestelmääsi asentamiasi selaimia, vaan se asentaa ja käyttää omia versioitaan selaimista. Tällä tavoin testit ovat eristettyjä ja toistettavissa riippumatta käyttöjärjestelmästä ja asennetuista selaimista. Testattavan sovelluksen toimivuus voidaan myös varmistaa suorittamalla samat testit samanaikaisesti useilla eri selaimilla.
 
-Mikäli et asentanut selaimia vielä edellisessä vaiheessa, voit asentaa selaimet käyttämällä seuraavaa komentoa:
+Mikäli et asentanut selaimia vielä edellisessä vaiheessa, voit asentaa selaimet valitsemalla jonkin seuraavista komennoista tai muokkaamalla niitä tarpeidesi mukaan:
 
 ```bash
+# asentaa kaikki selaimet (Chromium, Firefox ja WebKit)
 npx playwright install
-```
 
-Voit myös valita asennettavat selaimet erikseen. Esimerkiksi, jos haluat asentaa vain Chromiumin, voit käyttää seuraavaa komentoa:
-
-```bash
+# asentaa vain Chromium-selaimen:
 npx playwright install chromium
+
+# asentaa lisäksi selaimen riippuvuudet:
+# https://playwright.dev/docs/browsers#install-system-dependencies
+npx playwright install chromium --with-deps
 ```
 
 Lisätietoja selainten asennuksesta ja konfiguroinnista löydät Playwrightin dokumentaatiosta [https://playwright.dev/docs/browsers](https://playwright.dev/docs/browsers). Playwright asentaa selaimet tietokoneellesi erilliseen hakemistoon, josta voit halutessasi [poistaa ne seuraamalla Playwrightin ohjeita](https://playwright.dev/docs/browsers#uninstall-browsers).
@@ -94,7 +98,11 @@ Hyödynnä tässä osassa Playwrightin dokumentaation sivua [Running and debuggi
 Suorita testit komentorivillä tehtävärepositorion juuressa seuraavalla komennolla:
 
 ```bash
+# testaa kaikilla selaimilla:
 npx playwright test
+
+# tai vain tietyllä selaimella:
+npx playwright test --project=chromium
 ```
 
 Kuten huomaat, testit suoritetaan oletuksena ns. "headless"-tilassa, eli ilman näkyvää selainikkunaa. Testit suoritetaan tyypillisesti niin nopeasti, ettei selaimen katseleminen testien aikana ole mielekästä.
