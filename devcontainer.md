@@ -25,12 +25,26 @@ Cloud based development environments are commercial services and may require a p
 
 ## Tips, troubleshooting, and resources
 
+### Installing browser dependencies
+
+Inside a development container, Playwright browsers need to be installed with a `--with-deps` flag. This is because the development container is minimal and does not include all system dependencies required by browsers, for example fonts.
+
+> [!NOTE]
+> ```bash
+> npx playwright install chromium --with-deps
+> ```
+
 ### Opening the test report
 
 Opening the Playwright HTML report from your own browser might not work when the report is served from the development container. This happens because Playwright will only allow the local machine to access the report for security reasons. When the report is opened inside the container, your own operating system is technically a separate host, so it should not be able to connect.
 
 You can work around this by opening the report and setting the `--host` flag to listen to all interfaces, not just the local one. For example, you can run the following command in the terminal of the development container:
 
-```bash
-npx playwright show-report --host 0.0.0.0
-```
+> [!NOTE]
+> ```bash
+> npx playwright show-report --host 0.0.0.0
+> ```
+>
+> **⚠️ Security note**
+>
+> Binding to `0.0.0.0` exposes the report server to your network. Avoid doing this on untrusted networks unless you firewall it.
