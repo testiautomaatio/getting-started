@@ -80,7 +80,7 @@ npx playwright install
 # asentaa vain Chromium-selaimen:
 npx playwright install chromium
 
-# asentaa lisäksi selaimen riippuvuudet:
+# asentaa lisäksi riippuvuudet (development container -ympäristöjä varten):
 # https://playwright.dev/docs/browsers#install-system-dependencies
 npx playwright install chromium --with-deps
 ```

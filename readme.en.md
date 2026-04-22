@@ -80,7 +80,7 @@ npx playwright install
 # installs only Chromium:
 npx playwright install chromium
 
-# installs Chromium with system dependencies:
+# installs Chromium with system dependencies (needed in development containers):
 # https://playwright.dev/docs/browsers#install-system-dependencies
 npx playwright install chromium --with-deps
 ```
