@@ -1,0 +1,35 @@
+{
+    "name": "Checking the project setup and running the example test",
+    "description": "This test checks that the project is set up correctly and that the example test runs successfully. It verifies that the necessary dependencies are installed, that Playwright is configured properly, and that the example test passes without errors.",
+    "tests": [
+        {
+            "name": "Install dependencies",
+            "description": "Install dependencies and Playwright browsers using the package.json file.",
+            "run": [
+                "npm install",
+                "npx playwright install chromium --with-deps"
+            ],
+            "timeout": "3m",
+            "score": 30,
+            "skipRemainingOnFailure": true
+        },
+        {
+            "name": "Run example test",
+            "description": "Run the example test using Playwright and check that it passes.",
+            "run": "npx playwright test --reporter='list,html' --project=chromium --trace=on",
+            "timeout": "2m",
+            "score": 30,
+            "skipRemainingOnFailure": true
+        },
+        {
+            "name": "Check results.txt",
+            "description": "Checks that the testing results have been saved in the results.txt file and that the test passed.",
+            "run": "cat results.txt",
+            "contains": [
+                "passed"
+            ],
+            "timeout": 1,
+            "score": 40
+        }
+    ]
+}
