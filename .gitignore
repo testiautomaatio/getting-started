@@ -13,6 +13,6 @@ blob-report/
 # Ignore Playwright’s internal cache directory.
 playwright/.cache/
 
-# Ignore the Playwright GitHub Actions workflow configuration file.
-# This exercise uses a pre-existing custom workflow in classroom.yml instead.
-.github/workflows/playwright.yml
+# Ignore possible actions files that Playwright creates.
+# This exercise uses a pre-existing autograding workflow instead.
+.github/workflows/*.yml
