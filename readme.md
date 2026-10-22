@@ -21,7 +21,7 @@ Mikäli haluat käyttää valmiiksi konfiguroitua kehitysympäristöä, voit hy�
 Voit varmistaa Node.js:n asennuksen ja sen toimivuuden komentorivillä seuraavalla komennolla:
 
 ```bash
-node --version  # kirjoitushetkellä Node.js:n uusin LTS-versio on 24
+node --version  # katso https://nodejs.org/en/about/previous-releases
 ```
 
 Playwright-testejä voidaan kirjoittaa useilla eri koodieditoreilla ja eri ohjelmointikielillä, kuten JavaScriptillä ja TypeScriptillä. Tällä kurssilla suosittelemme TypeScriptin käyttöä, koska se yhdessä VS Coden kanssa helpottaa testien kirjoittamista ja virheiden paikantamista. Myös Playwrightin dokumentaation esimerkit on kirjoitettu TypeScriptillä.
@@ -136,10 +136,10 @@ Kun olet asentanut Playwrightin ja suorittanut Playwrightin esimerkkitestit onni
 
 ```bash
 # kopioi tämän komennon tulosteet tiedostoon results.txt
-npx playwright test --reporter='list,html' --project=chromium
+npx playwright test --reporter="list,html" --project=chromium
 
 # voit myös halutessasi ohjata komennon tulosteet suoraan tiedostoon
-npx playwright test --reporter='list,html' --project=chromium > results.txt
+npx playwright test --reporter="list,html" --project=chromium > results.txt
 ```
 
 Lisää projektiisi luodut uudet tiedostot sekä muokkaamiisi tiedostoihin tehdyt muutokset versionhallintaan käyttäen `git status`, `git add` ja `git commit` -komentoja. Lopuksi voit lähettää muutokset GitHubiin `git push`-komennolla.

@@ -19,7 +19,7 @@ If you want to use a pre-configured development environment, you can utilize thi
 You can verify your Node.js installation on the command line:
 
 ```bash
-node --version  # at writing time, the newest LTS is 24
+node --version  # see https://nodejs.org/en/about/previous-releases
 ```
 
 You can write Playwright tests in different editors and languages (JavaScript or TypeScript). For this course we recommend TypeScript with VS Code because it makes writing tests and locating errors easier. Playwright's docs also use TypeScript in their examples.
@@ -136,10 +136,10 @@ After installing Playwright and running the example tests successfully, you can 
 
 ```bash
 # copy this command's output into results.txt
-npx playwright test --reporter='list,html' --project=chromium
+npx playwright test --reporter="list,html" --project=chromium
 
 # or direct the output straight to the file
-npx playwright test --reporter='list,html' --project=chromium > results.txt
+npx playwright test --reporter="list,html" --project=chromium > results.txt
 ```
 
 Add new files and changes to version control with `git status`, `git add`, and `git commit`. Push to GitHub with `git push`.
