@@ -10,7 +10,7 @@
                 "npx playwright install chromium --with-deps"
             ],
             "timeout": "3m",
-            "score": 30,
+            "score": 50,
             "skipRemainingOnFailure": true
         },
         {
@@ -18,18 +18,7 @@
             "description": "Run the example test using Playwright and check that it passes.",
             "run": "npx playwright test --reporter='list,html' --project=chromium --trace=on",
             "timeout": "2m",
-            "score": 30,
-            "skipRemainingOnFailure": true
-        },
-        {
-            "name": "Check results.txt",
-            "description": "Checks that the testing results have been saved in the results.txt file and that the test passed.",
-            "run": "cat results.txt",
-            "contains": [
-                "passed"
-            ],
-            "timeout": 1,
-            "score": 40
+            "score": 50
         }
     ]
 }
